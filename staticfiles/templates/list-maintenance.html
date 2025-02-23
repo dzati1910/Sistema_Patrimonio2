@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="mb-4">Registros de Manutenção</h1>
+  <a href="{% url 'create-maintenance' %}" class="btn btn-primary mb-3">
+    <i class="fas fa-plus-circle"></i> Novo Registro
+  </a>
+
+  <table class="table table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Imóvel</th>
+        <th>Data Agendada</th>
+        <th>Data de Conclusão</th>
+        <th>Custo</th>
+        <th>Status</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for maintenance in maintenance %}
+        <tr>
+          <td>{{ maintenance.id }}</td>
+          <td>{{ maintenance.property.name }}</td>
+          <td>{{ maintenance.scheduled_date }}</td>
+          <td>{{ maintenance.completion_date }}</td>
+          <td>R$ {{ maintenance.cost }}</td>
+          <td class='{% if maintenance.is_overdue %}text-danger{% else %}text-success{% endif %}'>
+            {% if maintenance.is_overdue %}Atrasado{% else %}Em Dia{% endif %}
+          </td>
+          <td>{{ maintenance.description }}</td>
+        </tr>
+      {% empty %}
+          <tr>
+            <td colspan="8" class="text-center">Nenhuma Manutenção Registrada</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

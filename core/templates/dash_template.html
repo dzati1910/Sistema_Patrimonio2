@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Completo</title>
+    {% load static %}
+        <script src="https://unpkg.com/dash-renderer@latest/dist/dash-renderer.min.js"></script>
+        <script src="https://unpkg.com/dash-core-components@latest/dash_core_components.min.js"></script>
+        <script src="https://unpkg.com/plotly.js@latest/dist/plotly.min.js"></script>
+    {% load plotly_dash %}
+</head>
+<body>
+    <h1><strong>Dashboard Completo</strong></h1>
+
+    <h2><strong>Gráfico de Barras</strong></h2>
+    {% plotly_app name="SimpleExample" %}
+
+    <h2><strong>Gráfico de Linhas</strong></h2>
+    {% plotly_app name="GraficoLinha" %}
+</body>
+</html>

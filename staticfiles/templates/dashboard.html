@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <!-- Inclua os scripts para os gráficos se necessário -->
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <div>
+        <h2>Estatísticas Gerais</h2>
+        <p>Total de Patrimônios: {{ data.allProperties|length }}</p>
+        <p>Manutenções Pendentes: 
+          <p>Manutenções Pendentes: {{ manutencoes_pendentes|length }}</p>
+        </p>
+    </div>
+
+    <div>
+        <h2>Últimos Movimentos</h2>
+        <ul>
+          {% for mov in data.allMovements|slice:":5" %}
+            <li>{{ mov.property.name }} de {{ mov.originDepartment.name }} para {{ mov.destinationDepartment.name }} ({{ mov.timestamp }})</li>
+          {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Você pode inserir scripts para gráficos que usem os dados injetados -->
+</body>
+</html>

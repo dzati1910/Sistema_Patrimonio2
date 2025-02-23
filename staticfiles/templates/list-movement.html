@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="mb-4">Movimentações</h1>
+     <a href="{% url 'create-movement' %}" class="btn btn-primary mb-3">
+    <i class="fas fa-plus-circle"></i> Nova Movimentação
+  </a>
+
+    <table class="table table-hover table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Bem</th>
+          <th>Departamento Origem</th>
+          <th>Departamento Destino</th>
+          <th>Data/Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for movement in movements %}
+          <tr>
+            <td>{{ movement.id }}</td>
+            <td>{{ movement.property.name }}</td>
+            <td>{{ movement.origin_department.name }}</td>
+            <td>{{ movement.destination_department.name }}</td>
+            <td>{{ movement.timestamp|date:"d/m/Y H:i:s" }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6" class="text-center">Nenhuma movimentação encontrada.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

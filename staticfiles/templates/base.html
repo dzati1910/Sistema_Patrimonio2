@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Patrimônio</title>
+  {% load static %}
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <style>
+    /* Estilo Global */
+    body {
+      background: #f8f9fa;
+      color: #333;
+    }
+    /* Navbar com leve sombra */
+    .navbar {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* Footer elegante */
+    footer {
+      background: #343a40;
+      color: #ccc;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">Patrimônio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Bens</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Movimentações</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <main class="container my-5">
+    {% block content %}
+    <!-- Conteúdo específico das páginas -->
+    {% endblock %}
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Sistema Patrimônio. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

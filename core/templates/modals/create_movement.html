@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Nova Movimentação</h1>
+  <form method="post">
+    {% csrf_token %}
+    <!-- Display non-field errors -->
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger" role="alert">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    <div class="mb-3">
+      <label for="{{ form.property.id_for_label }}" class="form-label">Bem:</label>
+      {{ form.property }}
+      <div class="invalid-feedback">
+        {{ form.property.errors }}
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.origin_department.id_for_label }}" class="form-label">
+        Departamento Origem:
+      </label>
+      {{ form.origin_department }}
+      <div class="invalid-feedback">
+        {{ form.origin_department.errors }}
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.destination_department.id_for_label }}" class="form-label">
+        Departamento Destino:
+      </label>
+      {{ form.destination_department }}
+      <div class="invalid-feedback">
+        {{ form.destination_department.errors }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{% url 'list-movement' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

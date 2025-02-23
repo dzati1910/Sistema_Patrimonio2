@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Conteúdo específico para Fornecedores -->
+    <h1 class="mb-4">Lista de Fornecedores</h1>
+    <a href="{% url 'supplier-create' %}" class="btn btn-primary mb-3">
+        <i class="fas fa-plus"></i> Adicionar Fornecedor
+    </a>
+    <div id="messages"></div> <!-- Área de mensagens -->
+
+    <!-- 2. Tabela de Fornecedores -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Fornecedores Cadastrados</h5>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CNPJ</th>
+                        <th>Contato</th>
+                        <th>Contratos Ativos</th>
+                    </tr>
+                </thead>
+                <tbody id="suppliersTable">
+                {% for supplier in contacts %}
+                    <tr>
+                        <td>{{ suplier.id }}</td>
+                        <td>{{ supplier.name }}</td>
+                        <td>{{ supplier.tax_id }}</td>
+                        <td>{{ supplier.contact }}</td>
+                        <td>{{ supplier.active_contracts }}</td>
+                    </tr>
+                        </tbody>
+                     {% empty %}
+                <tr><td colspan="4">Nenhuma propriedade encontrada.</td></tr>
+            {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

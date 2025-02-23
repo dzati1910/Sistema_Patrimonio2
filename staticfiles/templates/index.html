@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- Seção de Boas-vindas -->
+  <div class="text-center my-5">
+    <h1>Bem-vindo ao Sistema Patrimônio</h1>
+    <p class="lead">Gerencie seus bens com eficiência e elegância.</p>
+  </div>
+
+  <!-- Cards com acesso às listagens -->
+  <div class="row">
+    <!-- Card 1: Bens Patrimoniais -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Bens Patrimoniais</h5>
+          <p class="card-text">Visualize e gerencie todos os bens cadastrados.</p>
+          <a href="{% url 'list-property' %}" class="btn btn-outline-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Categorias -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Categorias</h5>
+          <p class="card-text">Organize seus bens por categorias.</p>
+          <a href="{% url 'list-category' %}" class="btn btn-outline-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Departamentos -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Departamentos</h5>
+          <p class="card-text">Gerencie os departamentos da empresa.</p>
+          <a href="{% url 'list-department' %}" class="btn btn-outline-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Card 4: Manutenções -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Manutenções</h5>
+          <p class="card-text">Agende e acompanhe manutenções.</p>
+          <a href="{% url 'list-maintenance' %}" class="btn btn-outline-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Contatos -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Contatos</h5>
+          <p class="card-text">Gerencie seus fornecedores e parceiros.</p>
+          <a href="{% url 'list-contacts' %}" class="btn btn-outline-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6: Contratos -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Contratos</h5>
+          <p class="card-text">Visualize e gerencie contratos ativos.</p>
+          <a href="{% url 'list-contracts' %}" class="btn btn-outline-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+      <!-- Card 7: Movimentações -->
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Movimentações</h5>
+          <p class="card-text">Registre e acompanhe as movimentações dos bens.</p>
+          <a href="{% url 'list-movement' %}" class="btn btn-outline-primary">Acessar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

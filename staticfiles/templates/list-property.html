@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Patrimônio</h1>
+    <a href="{% url 'create-property' %}" class = "btn btn-primary mb-3">
+        <i class="fas fa-plus"></i>
+    Criar Bem</a>
+    <!-- Table of Properties -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Fornecedor</th>
+                <th>Departamento</th>
+                <th>RFID</th>
+            </tr>
+        </thead>
+        <tbody id="properties-table">
+            {% for property in properties %}
+                <tr>
+                    <td>{{ property.name }}</td>
+                    <td>{{ property.category.name }}</td>
+                    <td>{{ property.supplier.name }}</td>
+                    <td>{{ property.department.name }}</td>
+                    <td>{{ property.rfid_tag }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="4">Nenhuma propriedade encontrada.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+    <!-- Modals and Forms included from partials -->

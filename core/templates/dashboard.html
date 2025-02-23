@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Dashboard Container -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="dashboard-card">
+                {% load plotly_dash %}
+                {% plotly_app name="dashboard" ratio=0.85 %}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

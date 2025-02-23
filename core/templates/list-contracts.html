@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mb-4">Contratos</h1>
+
+    {# Botão de criar só para superusuários #}
+    {% if user.is_superuser %}
+        <a href="{% url 'create-contracts' %}" class="btn btn-primary mb-3">Criar Contrato</a>
+    {% else %}
+        <div class="alert alert-info py-2 px-3 mb-3" style="font-size: 0.9rem;">
+            Apenas administradores podem gerenciar contratos
+        </div>
+    {% endif %}
+
+   <table class="table table-hover table-bordered">
+         <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Imóvel</th>
+                <th>Fornecedor</th>
+                <th>Data Início</th>
+                <th>Data Fim</th>
+                <th>Valor</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contract in contracts %}
+                <tr>
+                    <td>{{ contract.id }}</td>
+                    <td>{{ contract.property.name }}</td>
+                    <td>{{ contract.supplier.name }}</td>
+                    <td>{{ contract.start_date }}</td>
+                    <td>{{ contract.end_date }}</td>
+                    <td>{{ contract.value }}</td>
+                    <td>
+                        {# Ações só para superusuários #}
+                        {% if user.is_superuser %}
+                            <!-- Editar -->
+                            <a href="{% url 'update-contract' contract.pk %}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+
+                            <!-- Excluir -->
+                            <a href="{% url 'contract-confirm-delete' contract.pk %}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="7">Nenhum contrato encontrado.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="text-center    <div class="text-center mb-5">
+      <h1 class="display-4">Bem-vindo ao Sistema Patrimônio</h1>
+      <p class="lead text-muted">Gerencie seus bens com eficiência e elegância.</p>
+    </div>
+
+    <!-- Cartões -->
+    <div class="row justify-content-center">
+      <!-- Card 1: Bens Patrimoniais -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-lg border-0 rounded-lg hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Bens Patrimoniais</h5>
+            <p class="card-text text-muted">Visualize e gerencie todos os bens cadastrados.</p>
+            <a href="{% url 'list-property' %}" class="btn btn-primary btn-block">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Categorias -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-lg border-0 rounded-lg hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Categorias</h5>
+            <p class="card-text text-muted">Organize seus bens por categorias.</p>
+            <a href="{% url 'list-category' %}" class="btn btn-primary btn-block">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Departamentos -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-lg border-0 rounded-lg hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Departamentos</h5>
+            <p class="card-text text-muted">Gerencie os departamentos da empresa.</p>
+            <a href="{% url 'list-department' %}" class="btn btn-primary btn-block">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Manutenções -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-lg border-0 rounded-lg hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Manutenções</h5>
+            <p class="card-text text-muted">Agende e acompanhe manutenções.</p>
+            <a href="{% url 'list-maintenance' %}" class="btn btn-primary btn-block">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Contatos -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-lg border-0 rounded-lg hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Contatos</h5>
+            <p class="card-text text-muted">Gerencie seus fornecedores e parceiros.</p>
+            <a href="{% url 'list-contacts' %}" class="btn btn-primary btn-block">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Contratos -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-lg border-0 rounded-lg hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Contratos</h5>
+            <p class="card-text text-muted">Visualize e gerencie contratos ativos.</p>
+            <a href="{% url 'list-contracts' %}" class="btn btn-primary btn-block">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: Movimentações -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-lg border-0 rounded-lg hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Movimentações</h5>
+            <p class="card-text text-muted">Registre e acompanhe as movimentações dos bens.</p>
+            <a href="{% url 'list-movement' %}" class="btn btn-primary btn-block">Acessar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8: Dashboard -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card shadow-lg border-0 rounded-lg hover-shadow">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Dashboard</h5>
+            <p class="card-text text-muted">Visualize seus dados de maneira rápida e intuitiva.</p>
+            <a href="{% url 'dashboard' %}" class="btn btn-primary btn-block">Acessar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estilos personalizados -->
+  <style>
+    .hover-shadow:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+  </style>
+{% endblock %}

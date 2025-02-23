@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1>Novo Bem</h1>
+  <form id="PropertyForm" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {% if field.errors %}
+          {{ field|add_class:"form-control is-invalid" }}
+        {% else %}
+          {{ field|add_class:"form-control" }}
+        {% endif %}
+        {% if field.errors %}
+          <div class="invalid-feedback">
+            {{ field.errors|join:" " }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <div class="d-flex justify-content-between mt-3">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'list-property' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

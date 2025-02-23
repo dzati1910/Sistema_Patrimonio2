@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Agendar Manutenção</h1>
+  <form id="AdminMaintenanceForm" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="{{ form.property.id_for_label }}" class="form-label">Imóvel:</label>
+      {{ form.property }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.scheduled_date.id_for_label }}" class="form-label">Data Agendada:</label>
+      {{ form.scheduled_date }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.completion_date.id_for_label }}" class="form-label">Data de Conclusão:</label>
+      {{ form.completion_date }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.cost.id_for_label }}" class="form-label">Custo (R$):</label>
+      {{ form.cost }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.description.id_for_label }}" class="form-label">Descrição:</label>
+      {{ form.description }}
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+    <button type="submit" class="btn btn-primary">Agendar</button>
+    <a href="{% url 'list-maintenance' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

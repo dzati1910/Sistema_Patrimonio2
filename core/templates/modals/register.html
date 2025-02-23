@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-8">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="mb-0">Registrar Nova Conta</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}" {% if field.field.required %}required{% endif %}>
+                                {% if field.errors %}
+                                    <div class="text-danger">
+                                        {% for error in field.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="{% url 'login' %}" class="text-decoration-none">Já tem uma conta?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estilos personalizados -->
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        background-color: #fff;
+    }
+    .btn-link {
+        color: #007bff;
+    }
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

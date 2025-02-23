@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Conteúdo específico para Fornecedores -->
+    <h1 class="mb-4">Lista de Fornecedores</h1>
+
+    {# Botão de adicionar só para superusuários #}
+    {% if user.is_superuser %}
+        <a href="{% url 'create-contacts' %}" class="btn btn-primary mb-3">
+            <i class="fas fa-plus"></i> Adicionar Fornecedor
+        </a>
+    {% else %}
+        <div class="alert alert-info py-2 px-3 mb-3" style="font-size: 0.9rem;">
+            Apenas administradores podem gerenciar fornecedores
+        </div>
+    {% endif %}
+
+    <div id="messages"></div> <!-- Área de mensagens -->
+
+    <!-- Tabela de Fornecedores -->
+    <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CNPJ</th>
+                <th>Contato</th>
+                <th>Contratos Ativos</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="suppliersTable">
+            {% for supplier in contacts %}
+                <tr>
+                    <td>{{ supplier.id }}</td>
+                    <td>{{ supplier.name }}</td>
+                    <td>{{ supplier.tax_id }}</td>
+                    <td>{{ supplier.contact }}</td>
+                    <td>{{ supplier.active_contracts }}</td>
+                    <td>
+                        {# Ações só para superusuários #}
+                        {% if user.is_superuser %}
+                            <!-- Editar -->
+                            <a href="{% url 'update-contacts' supplier.pk %}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+
+                            <!-- Excluir -->
+                            <a href="{% url 'supplier-confirm-delete' supplier.pk %}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="6">Nenhum fornecedor encontrado.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

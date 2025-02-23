@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Patrimônio</title>
+    {% load static %}
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon/favicon-32x32.png' %}">
+
+    <!-- CSS Framework -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        /* Base Styles */
+        body {
+            background: #f0f2f5;
+            color: #293442;
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            transition: all 0.4s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #0052D4, #00C9FF);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            color: white !important;
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        /* Search Form */
+        .search-form {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 0 10px;
+            margin-left: auto;
+        }
+
+        .search-input {
+            background: transparent;
+            border: 0;
+            padding: 8px;
+            width: 250px;
+            color: #222;
+        }
+
+        .search-input::placeholder {
+            color: #9da7b4;
+        }
+
+        .search-icon {
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        /* Dropdown Styles */
+        .dropdown-menu {
+            border: 0;
+            border-radius: 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-item {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f6f8fa !important;
+            color: #17a2b8;
+        }
+
+        /* Footer */
+        footer {
+            background: #212529;
+            color: #989e9f;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 15px 0;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0 8px;
+        }
+
+        .social-links a:hover {
+            color: #1c7430;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <i class="fa-solid fa-briefcase me-2"></i>
+                Sistema de Patrimônio
+            </a>
+
+            <!-- Toggler Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Collapse -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="d-lg-flex align-items-center">
+                    <!-- Search Form (Hidden on Mobile) -->
+                    <form class="search-form d-none d-lg-flex me-4">
+                        <input class="search-input form-control" type="text" placeholder="Pesquisar por ativos...">
+                        <i class="fas fa-search search-icon"></i>
+                    </form>
+
+                    <!-- Main Navigation -->
+                    <ul class="navbar-nav ms-lg-auto">
+                        <!-- Assets Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="assetsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-box-open me-2"></i> Bens
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="assetsDropdown">
+                                <li><a class="dropdown-item" href="{% url 'list-property' %}"><i class="fa-solid fa-list-check me-2"></i> Lista de Bens</a></li>
+                                <li><a class="dropdown-item" href="{% url 'list-department' %}"><i class="fa-solid fa-building me-2"></i> Departamentos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'list-maintenance' %}"><i class="fa-solid fa-wrench me-2"></i> Manutenções</a></li>
+                                <li><a class="dropdown-item" href="{% url 'list-category' %}"><i class="fa-solid fa-tag me-2"></i> Categorias</a></li>
+                                <li><a class="dropdown-item" href="{% url 'list-movement' %}"><i class="fa-solid fa-arrow-right-arrow-left me-2"></i> Movimentos</a></li>
+                            </ul>
+                        </li>
+                        <!-- Contracts Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="contractsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-file-contract me-2"></i> Contratos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="contractsDropdown">
+                                <li><a class="dropdown-item" href="{% url 'list-contracts' %}"><i class="fa-solid fa-file-lines me-2"></i> Todos os Contratos</a></li>
+                                <li><a class="dropdown-item" href="{% url 'list-contacts' %}"><i class="fa-solid fa-address-card me-2"></i> Fornecedores</a></li>
+                            </ul>
+                        </li>
+                        <!-- Reports -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}">
+                                <i class="fa-solid fa-chart-line me-2"></i> Relatórios
+                            </a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <!-- Menu do usuário logado -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-regular fa-circle-user me-2"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-gear me-2"></i> Configurações</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket me-2"></i> Sair</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <!-- Menu para usuários não logados -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <i class="fa-solid fa-right-to-bracket me-2"></i>
+                                Entrar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">
+                                <i class="fa-solid fa-user-plus me-2"></i>
+                                Registrar
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>
+                &copy; 2025 Sistema de Patrimônio - Todos os direitos reservados.
+                <br>
+                <small>Desenvolvido por Paulo Henrique</small>
+            </p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

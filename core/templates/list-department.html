@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="container mt-5">
+    <h1 class="mb-4">Departamentos</h1>
+
+    {# Botão de adicionar só para superusuários #}
+    {% if user.is_superuser %}
+        <a href="{% url 'create-department' %}" class="btn btn-primary mb-3">
+            <i class="fas fa-plus-circle"></i> Novo Departamento
+        </a>
+    {% else %}
+        <div class="alert alert-info py-2 px-3 mb-3" style="font-size: 0.9rem;">
+            Apenas administradores podem gerenciar departamentos
+        </div>
+    {% endif %}
+
+    <table class="table table-hover table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Localização</th>
+          <th>Responsável</th>
+          <th>Quantidade de Bens</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for department in departments %}
+          <tr>
+            <td>{{ department.id }}</td>
+            <td>{{ department.name }}</td>
+            <td>{{ department.location }}</td>
+            <td>{{ department.get_responsible_person_name }}</td>
+            <td>{{ department.asset_count }}</td>
+            <td>
+              {# Ações só para superusuários #}
+              {% if user.is_superuser %}
+                <!-- Editar -->
+                <a href="{% url 'update-department' department.pk %}" class="btn btn-primary btn-sm">
+                  <i class="fas fa-edit"></i> Editar
+                </a>
+
+                <!-- Excluir -->
+                <a href="{% url 'department-confirm-delete' department.pk %}" class="btn btn-danger btn-sm">
+                  <i class="fas fa-trash"></i> Excluir
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6" class="text-center">Nenhum departamento cadastrado.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endblock %}
